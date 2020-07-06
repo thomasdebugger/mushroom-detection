@@ -17,9 +17,9 @@ import seaborn as sns
 import os
 
 BATCH_SIZE  = 32
-EPOCHS      = 100
+EPOCHS      = 200
 
-data_dir = '/Users/cbml5653/Documents/Projets/projet_analyse_fibre/doidf-alea/doidfalea/predict_modele/data/mushrooms.csv'
+data_dir = '/Users/cbml5653/Documents/Cours_energie/mushrooms_analysis/mushroom-detection/data/mushrooms.csv'
 mushrooms_df = pd.read_csv(data_dir, delimiter=',', encoding='UTF-8')
 
 target_column = 'class'
@@ -55,9 +55,7 @@ def build_model(feature_keys_len):
     learning_rate: float = 0.001
     model = keras.Sequential([
         layers.Dense(64, activation='relu', input_shape=[feature_keys_len]),
-        layers.Dense(64, activation='relu'),
-        layers.Dense(64, activation='relu'),
-        layers.Dense(1)
+        layers.Dense(1, activation='sigmoid')
     ])
     #optimizer = keras.optimizers.RMSprop(0.001)
     adam_opt = Adam(lr=learning_rate, beta_1=0.9, beta_2=0.999, epsilon = 1e-08, decay=0.0, amsgrad=False) #à reflechir
